@@ -44,7 +44,6 @@ router.post("/sellerList", async (req, res) => {
           }
 
         const sellerData = await seller.paginate(filter, options);
-        console.log('Seller List Data :', sellerData.docs[4].shopDetails);
         sellerData.docs.forEach(doc => {
             doc.customerDiscountList = [];
             doc.MemberTierObject = [];
