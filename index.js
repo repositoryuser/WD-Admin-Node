@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 require('dotenv').config();
 app.use(cors());
+const path = require("path");
 
 const PORT = process.env.PORT; 
 const DB_URL = process.env.DB_URL; 
@@ -72,6 +73,13 @@ app.use("/SubtotalCustomerAPIs", SubtotalCustomerAPIs);
 app.use('/details', SellerDetails)
 app.use('/customPlan', CustomPlan)
 
+
+app.use(express.static(path.join(__dirname, "./react-app")));
+
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "react-app", "index.html"));
+});
 
 
 //#endregion
